@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import Welcome from '../../components/welcome/Welcome';
+import LoginModal from './Login/LoginModal';
+import RegistrationModal from './Registration/RegistrationModal';
 
 const WelcomePage = () => {
+	const [openSignIn, setOpenSignIn] = useState(false);
+	const [openRegistration, setOpenRegistration] = useState(false);
+	const handleOpenSignIn = () => {
+		setOpenSignIn(true);
+	};
+	const handleCloseSignIn = () => {
+		setOpenSignIn(false);
+	};
+	const handleOpenRegistration = () => {
+		setOpenRegistration(true);
+	};
+	const handleCloseRegistration = () => {
+		setOpenRegistration(false);
+	};
 	return (
-		<div id="welcome">
-			<h1>Добро пожаловать!</h1>
-			<p>Данное приложение спроектировано для сбора отправленных откликов.</p>
-			<div id="buttons">
-				<button>Войти</button>
-				<button>Зарегистрироваться</button>
-			</div>
-			<a href="https://github.com/NewZaikaM/our-command-project">
-				<img src="./../../../public/icons8-github.svg" alt="GitHub"/>
-				<p>Job Applications</p>
-			</a>
-		</div>
+		<>
+			<Welcome
+				handleOpenSignIn={handleOpenSignIn}
+				handleOpenRegistration={handleOpenRegistration}
+			/>
+			<LoginModal open={openSignIn} onClose={handleCloseSignIn} />
+			<RegistrationModal open={openRegistration} onClose={handleCloseRegistration} />
+		</>
 	);
 };
 

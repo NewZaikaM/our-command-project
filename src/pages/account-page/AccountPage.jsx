@@ -1,84 +1,120 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
-import FilledInput from '@mui/material/FilledInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import styles from './Account.module.css';
 import { Typography } from '@mui/material';
 
+import FieldText from './../../components/fields/FieldText';
+import FieldPassword from '../../components/fields/fieldPassword';
+
+import { isValidName, isValidPassword } from '../../utils/validates';
+
+import styles from './Account.module.css';
+
 function AccountPage() {
-	const [showPassword, setShowPassword] = React.useState(false);
+	const [nickname, setNickname] = useState({
+		nickname: '',
+		error: null,
+	});
+	const [passwords, setPasswords] = useState({
+		old: '',
+		new: '',
+		error: null,
+	});
 
-	const handleClickShowPassword = () => setShowPassword((show) => !show);
+	const onChangeNickname = (e) =>
+		setNickname({
+			...nickname,
+			nickname: e.target.value,
+		});
 
-	const handleMouseDownPassword = (event) => {
-		event.preventDefault();
+	const onChangePasswords = (e) => {
+		const namePassword = e.target.id;
+		setPasswords({ ...passwords, [namePassword]: e.target.value });
+	};
+
+	const onUpdateAccount = (e) => {
+		e.preventDefault();
+		const isValidNickname = isValidName(nickname.nickname);
+		const isValidPasswords =
+			isValidPassword(passwords.old) && isValidPassword(passwords.new);
+
+		if (isValidNickname && isValidPasswords) {
+			const updatedAccount = {
+				nickname: nickname.nickname,
+				password: passwords.new,
+			};
+			console.log(updatedAccount);
+			return;
+		}
+		if (isValidNickname) {
+			const updatedAccount = {
+				nickname: nickname.nickname,
+			};
+			console.log(updatedAccount);
+			return;
+		}
+		if (isValidPasswords) {
+			const updatedAccount = {
+				password: passwords.new,
+			};
+			console.log(updatedAccount);
+			return;
+		}
+
+		setNickname({
+			...nickname,
+			error: 'Никнейм должен быть от 2 до 8 символов',
+		});
+		setPasswords({
+			...passwords,
+			error: 'Неверный прошлый пароль или меньше 6 символов',
+		});
 	};
 
 	return (
 		<Box>
-			<Paper className={styles.paper}>
-				<Typography variant="h5" className={styles.title}>
-					Редактирование аккаунта
-				</Typography>
-				<FormControl variant="filled" className={styles.input}>
-					<TextField
-						label="Никнейм"
-						variant="filled"
-						placeholder="Неизвестынй"
+			<form onSubmit={onUpdateAccount}>
+				<Paper className={styles.paper}>
+					<Typography variant="h5" className={styles.title}>
+						Редактирование аккаунта
+					</Typography>
+					<FieldText
+						onChange={onChangeNickname}
+						value={nickname.nickname}
+						label={'Никнейм'}
+						placeholder={'Неизвестынй'}
+						error={nickname.error}
+						helperStyle={nickname.error ? { color: '#d32f2f' } : {}}
+						helperText={nickname.error ? nickname.error : 'Введите новое имя'}
 					/>
-					<FormHelperText>Введите новое имя</FormHelperText>
-				</FormControl>
-				<FormControl variant="filled" className={styles.input}>
-					<InputLabel htmlFor="old-password">Старый пароль</InputLabel>
-					<FilledInput
-						id="old-password"
-						type={showPassword ? 'text' : 'password'}
-						endAdornment={
-							<InputAdornment position="end">
-								<IconButton
-									aria-label="toggle password visibility"
-									onClick={handleClickShowPassword}
-									onMouseDown={handleMouseDownPassword}
-									edge="end"
-								>
-									{showPassword ? <VisibilityOff /> : <Visibility />}
-								</IconButton>
-							</InputAdornment>
+					<FieldPassword
+						error={passwords.error}
+						onChange={onChangePasswords}
+						value={passwords.old}
+						id={'old'}
+						label={'Старый пароль'}
+						helperStyle={passwords.error ? { color: '#d32f2f' } : {}}
+						helperText={
+							passwords.error ? passwords.error : 'Введите старый пароль'
 						}
 					/>
-					<FormHelperText>Введите старый пароль</FormHelperText>
-				</FormControl>
-				<FormControl variant="filled" className={styles.input}>
-					<InputLabel htmlFor="new-password">Новый пароль</InputLabel>
-					<FilledInput
-						id="new-password"
-						type={showPassword ? 'text' : 'password'}
-						endAdornment={
-							<InputAdornment position="end">
-								<IconButton
-									aria-label="toggle password visibility"
-									onClick={handleClickShowPassword}
-									onMouseDown={handleMouseDownPassword}
-									edge="end"
-								>
-									{showPassword ? <VisibilityOff /> : <Visibility />}
-								</IconButton>
-							</InputAdornment>
+					<FieldPassword
+						error={passwords.error}
+						onChange={onChangePasswords}
+						value={passwords.new}
+						id={'new'}
+						label={'Новый пароль'}
+						helperStyle={passwords.error ? { color: '#d32f2f' } : {}}
+						helperText={
+							passwords.error ? passwords.error : 'Введите новый пароль'
 						}
 					/>
-					<FormHelperText>Введите новый пароль</FormHelperText>
-				</FormControl>
-				<button className={styles.save}>Сохранить</button>
-			</Paper>
+					<button type="submit" className={styles.save}>
+						Сохранить
+					</button>
+				</Paper>
+			</form>
 		</Box>
 	);
 }
