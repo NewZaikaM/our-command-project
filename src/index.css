@@ -141,8 +141,11 @@ button:active {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-  font-weight: 500;
   width: 60%;
+  font-weight: 500;
+	color: rgb(18, 18, 18);
+	text-decoration: none;
+	text-transform: capitalize;
 }
 
 #sidebar > div form {
