@@ -22,8 +22,7 @@ body {
 	line-height: 1.5;
 	color: #121212;
 }
-textarea,
-input,
+
 button {
 	font-size: 1rem;
 	font-family: inherit;
@@ -40,8 +39,6 @@ button {
 	font-weight: 500;
 	cursor: pointer;
 }
-textarea:hover,
-input:hover,
 button:hover {
 	box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.6), 0 1px 2px hsla(0, 0%, 0%, 0.2);
 }
@@ -57,6 +54,48 @@ button:active {
 	width: 100%;
 }
 
+#welcome {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	
+}
+#welcome *{
+	margin-bottom: 20px;
+	margin-top: 0;
+}
+#welcome #buttons {
+	display: flex;
+	gap: 5px;
+}
+#welcome a {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
+	color: #000;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: 500;
+	transition: .3s all;
+	margin-bottom: 0;
+	padding: 5px;
+}
+#welcome a * {
+	margin-bottom: 0;
+}
+
+#welcome a:hover {
+	color: #3992ff;
+}
+#welcome img {
+	width: 20px;
+	height: 20px;
+}
 #sidebar {
 	width: 22rem;
 	background-color: #f7f7f7;
