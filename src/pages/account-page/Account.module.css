@@ -1,0 +1,19 @@
+.paper {
+  padding: 15px 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+
+}
+.title {
+  font-family: inherit;
+  align-self: center;
+}
+.input {
+  width: 100%;
+}
+.save {
+  margin-top: 20px;
+}

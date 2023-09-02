@@ -2,27 +2,29 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import MainPage from './pages/main-page/MainPage';
-// import FormPage from './pages/form-page/FormPage';
+import FormPage from './pages/form-page/FormPage';
 import ErrorPage from './pages/error-page/ErrorPage';
 import WelcomePage from './pages/welcome-page/WelcomePage';
+import AccountPage from './pages/account-page/AccountPage';
 
 export const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <WelcomePage />,
+		errorElement: <ErrorPage />,
 	},
 	{
 		path: '/user/:userId',
 		element: <MainPage />,
 		errorElement: <ErrorPage />,
 		children: [
-			// {
-			// 	path: 'add-applications',
-			// 	element: <FormPage />,
-			// },
+			{
+				path: 'add-applications',
+				element: <FormPage />,
+			},
 			{
 				path: 'account',
-				element: <h1>Аккаунт</h1>,
+				element: <AccountPage />,
 			},
 			{
 				path: 'applications',

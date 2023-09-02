@@ -1,9 +1,9 @@
 //@ts-nocheck
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Autocomplete, Chip, TextField, Typography } from '@mui/material';
 
 import styles from './Form.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const skillsArrayMock = ['TypeScript', 'Next.js'];
 
@@ -13,6 +13,7 @@ function FormPage() {
 	const [skillsArray, setSkillsArray] = useState([]);
 
 	const navigate = useNavigate();
+	const { userId } = useParams();
 
 	function handleCompanyNameChange(e) {
 		setCompanyName(e.target.value);
@@ -88,7 +89,7 @@ function FormPage() {
 
 				<div className={styles.buttons}>
 					<button onClick={addVacancy}>Добавить</button>
-					<button onClick={() => navigate('/')} className={styles.cancel}>
+					<button onClick={() => navigate(`/user/${userId}/account`)} className={styles.cancel}>
 						Отмена
 					</button>
 				</div>

@@ -8,14 +8,14 @@ const Sidebar = () => {
 	
 	return (
 		<div id="sidebar">
-			<button className="exit">Выйти</button>
+			<button className="exit" onClick={() => navigate(`/`)}>Выйти</button>
 			<div>
 				<Link to={`/user/${userId}/account`} className="avatar">
 					<Avatar />
 					<p>Неизвестный</p>
 				</Link>
 				<form>
-					<button className="add" onClick={() => navigate('/add-applications')}>
+					<button className="add" onClick={() => navigate(`/user/${userId}/add-applications`)}>
 						Добавить
 					</button>
 				</form>
