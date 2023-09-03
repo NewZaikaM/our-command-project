@@ -60,7 +60,7 @@ function AccordionItem({ vacancy }) {
 					>
 						{'Недостающие знания: '}
 					</Typography>
-					{missingKnowledge.join(", ")}
+					{missingKnowledge?.join(", ")}
 				</Typography>
 
 				<Stack
