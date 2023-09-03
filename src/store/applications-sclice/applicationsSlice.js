@@ -18,9 +18,14 @@ const applicationsSlice = createSlice({
 		applications: [],
 		invitations: [],
 		failures: [],
+		missingKnowledge: [],
 		error: null,
 	},
-	reducers: {},
+	reducers: {
+		addTopMissingKnowledge(state, action) {
+			state.missingKnowledge = action.payload;
+		},
+	},
 	extraReducers(builder) {
 		builder
 			.addCase(fetchApplications.pending, (state) => {
@@ -61,4 +66,6 @@ function sortAllApplications(applications, invitations, failures, action) {
 	);
 	failures.sort((a, b) => Date.parse(b.lastUpdate) - Date.parse(a.lastUpdate));
 }
+
+export const { addTopMissingKnowledge } = applicationsSlice.actions;
 export const applicationsReducer = applicationsSlice.reducer;

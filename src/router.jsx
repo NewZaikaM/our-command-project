@@ -9,6 +9,7 @@ import AccountPage from './pages/account-page/AccountPage';
 import { ResponsesPage } from './pages/responses-page/ResponsesPage';
 import { InvitationsPage } from './pages/invitations-page/InvitationsPage';
 import { FailuresPage } from './pages/failures-page/FailuresPage';
+import MissingSkillsPage from './pages/missing-skills-page/missingSkillsPage';
 
 export const router = createBrowserRouter([
 	{
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'missing-skills',
-				element: <h1>Недостающие навыки</h1>,
+				element: <MissingSkillsPage />
 			},
 		],
 	},

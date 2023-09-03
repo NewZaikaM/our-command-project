@@ -1,0 +1,22 @@
+.list {
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.paper {
+  width: 100%;
+  padding: 10px;
+  font-family: inherit;
+}
+.text {
+  font-family: inherit;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.priority {
+  padding: 5px;
+  margin-left: 20px;
+}
