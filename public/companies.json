@@ -1,0 +1,128 @@
+[
+    {
+        "companyName":"German web",
+        "vacancyLink":"https://hh.ru/vacancy/84933386",
+        "missingKnowledge":"PHP, Битрикс, Wordpress, Laravel",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"VK",
+        "vacancyLink":"https://hh.ru/vacancy/84931883",
+        "missingKnowledge":"CI/CD, SSR, WebRTC, Внутренние механизмы современных браузеров и клиент-серверных взаимодействий, сетевой стек, принципы работы инструментов сборки",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Rocket Science",
+        "vacancyLink":"https://hh.ru/vacancy/84617937",
+        "missingKnowledge":"Node.js, SSR, Webpack",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Авентика",
+        "vacancyLink":"https://hh.ru/vacancy/84840068",
+        "missingKnowledge":"REST-API, SQL, NoSQL, Node.js",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Artic Media",
+        "vacancyLink":"https://hh.ru/vacancy/84879014",
+        "missingKnowledge":"",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Amigoweb ",
+        "vacancyLink":"https://hh.ru/vacancy/84630025",
+        "missingKnowledge":"next.js/nuxt.js, SSR, NodeJS",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"АКСИТЕХ",
+        "vacancyLink":"https://hh.ru/vacancy/81078634",
+        "missingKnowledge":"NodeJS, SCRUM, REST, GraphQL, GRPC, Postgres",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"VK",
+        "vacancyLink":"https://hh.ru/vacancy/84480499",
+        "missingKnowledge":"Grunt, gulp, webpack, MobX",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Danke",
+        "vacancyLink":"https://hh.ru/vacancy/84363078",
+        "missingKnowledge":"Gulp, Jade, Stylus, PostCSS, Webpack, SMACSS, GSAP, WebGL ",
+        "status": "Пока пропускаю",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Alto",
+        "vacancyLink":"https://hh.ru/vacancy/84402443",
+        "missingKnowledge":"PHP, ",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Avito",
+        "vacancyLink":"https://career.avito.com/vacancies/razrabotka/658/",
+        "missingKnowledge":"представление о том, как работает браузерный рендер, nodejs, куда утекает память",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Avito",
+        "vacancyLink":"https://career.avito.com/vacancies/razrabotka/1660/",
+        "missingKnowledge":"",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Spans Agency",
+        "vacancyLink":"https://hh.ru/vacancy/85036528",
+        "missingKnowledge":"Keyframes, Отличное понимание 2д/3д графики, GSAP/Pixi.js/Anime.js, canvas",
+        "status": "Пока пропускаю",
+        "lastUpdate": "14.08.23"
+    },
+    {
+        "companyName":"Двигус",
+        "vacancyLink":"https://hh.ru/vacancy/84716871",
+        "missingKnowledge":"Node.js, Angular",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Боновизио",
+        "vacancyLink":"https://hh.ru/vacancy/84448760",
+        "missingKnowledge":"REST-API, Gulp, Webpack",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Start Mobile",
+        "vacancyLink":"https://hh.ru/vacancy/83237179",
+        "missingKnowledge":"React Native",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"РадарИТ",
+        "vacancyLink":"https://hh.ru/vacancy/85070483",
+        "missingKnowledge":"",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    },
+    {
+        "companyName":"Иннова",
+        "vacancyLink":"https://hh.ru/vacancy/83565706",
+        "missingKnowledge":"",
+        "status": "sent",
+        "lastUpdate": "29.08.23"
+    }
+]

@@ -6,6 +6,9 @@ import FormPage from './pages/form-page/FormPage';
 import ErrorPage from './pages/error-page/ErrorPage';
 import WelcomePage from './pages/welcome-page/WelcomePage';
 import AccountPage from './pages/account-page/AccountPage';
+import { ResponsesPage } from './pages/responses-page/ResponsesPage';
+import { InvitationsPage } from './pages/invitations-page/InvitationsPage';
+import { FailuresPage } from './pages/failures-page/FailuresPage';
 
 export const router = createBrowserRouter([
 	{
@@ -28,15 +31,15 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'applications',
-				element: <h1>Отклики</h1>,
+				element: <ResponsesPage />,
 			},
 			{
 				path: 'invitations',
-				element: <h1>Приглашения</h1>,
+				element: <InvitationsPage />,
 			},
 			{
 				path: 'failures',
-				element: <h1>Отказы</h1>,
+				element: <FailuresPage />,
 			},
 			{
 				path: 'missing-skills',

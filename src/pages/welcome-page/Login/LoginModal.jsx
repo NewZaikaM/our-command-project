@@ -15,6 +15,7 @@ function LoginModal({ open, onClose }) {
 	const onCheckAccount = (e) => {
 		e.preventDefault();
 		console.log({ email, password });
+		
 	};
 	return (
 		<Modal
