@@ -1,15 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { AccordionItem } from './../../components/accordionItem/accordionItem';
-import companies from './../../../public/companies.json';
 
 function InvitationsPage() {
+	const invitations = useSelector(
+		({ allApplications }) => allApplications.invitations,
+	);
 	return (
 		<div>
 			<h2>Приглашения</h2>
-			{companies.map((company) => (
+			{invitations.map((invitation) => (
 				<AccordionItem
-					key={company.companyName} //TODO: Прикрутить id
-					company={company}
+					key={invitation.id} //TODO: Прикрутить id
+					vacancy={invitation}
 				/>
 			))}
 		</div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import FieldText from '../../../components/fields/FieldText';
 import FieldPassword from '../../../components/fields/fieldPassword';
@@ -8,15 +10,23 @@ import FieldPassword from '../../../components/fields/fieldPassword';
 import styles from './Login.module.css';
 
 function LoginModal({ open, onClose }) {
+	const account = useSelector((state) => state.account);
+	const navigate = useNavigate();
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState(null);
+
 	const onChangeEmail = (e) => setEmail(e.target.value);
 	const onChangePassword = (e) => setPassword(e.target.value);
 	const onCheckAccount = (e) => {
 		e.preventDefault();
-		console.log({ email, password });
-		
+		if (account.password === password && account.email === email) {
+			navigate(`/user/${account.id}/account`);
+		}
+		setError('Неверная почта или пароль');
 	};
+
 	return (
 		<Modal
 			open={open}
@@ -31,14 +41,18 @@ function LoginModal({ open, onClose }) {
 					value={email}
 					label={'Почта'}
 					placeholder={'example@gamil.com'}
-					helperText={''}
+					error={error}
+					helperStyle={!!error ? { color: '#d32f2f' } : {}}
+					helperText={!!error ? error : ''}
 				/>
 				<FieldPassword
 					onChange={onChangePassword}
 					value={password}
 					id={'password'}
 					label={'Пароль'}
-					helperText={''}
+					error={error}
+					helperStyle={!!error ? { color: '#d32f2f' } : {}}
+					helperText={!!error ? error : ''}
 				/>
 
 				<div className={styles.buttons}>

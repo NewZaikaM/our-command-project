@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Typography } from '@mui/material';
 import { Modal } from '@mui/base';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import FieldText from '../../../components/fields/FieldText';
 import FieldPassword from '../../../components/fields/fieldPassword';
@@ -15,7 +16,7 @@ import {
 import { createAccount } from '../../../store/account-slice/accountSlice';
 
 import styles from './Registration.module.css';
-import { useNavigate } from 'react-router-dom';
+
 
 function RegistrationModal({ open, onClose }) {
 	const dispatch = useDispatch();

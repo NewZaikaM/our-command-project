@@ -1,15 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import { AccordionItem } from './../../components/accordionItem/AccordionItem';
-import companies from './../../../public/companies.json';
 
 function ResponsesPage() {
+	const responses = useSelector(
+		({ allApplications }) => allApplications.applications,
+	);
 	return (
 		<div>
 			<h2>Отклики</h2>
-			{companies.map((company) => (
+			{responses.map((response) => (
 				<AccordionItem
-					key={company.companyName} //TODO: Прикрутить id
-					company={company}
+					key={response.id} //TODO: Прикрутить id
+					vacancy={response}
 				/>
 			))}
 		</div>

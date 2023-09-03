@@ -1,39 +1,57 @@
 //@ts-nocheck
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Autocomplete, Chip, TextField, Typography } from '@mui/material';
+import {
+	Autocomplete,
+	Chip,
+	TextField,
+	Typography,
+	FormHelperText,
+} from '@mui/material';
+import { FormControl } from '@mui/base';
 
 import styles from './Form.module.css';
+import { dateFormat } from '../../utils/others';
 
 const skillsArrayMock = ['TypeScript', 'Next.js'];
 
 function FormPage() {
-	const [companyName, setCompanyName] = useState('');
-	const [link, setLink] = useState('');
-	const [skillsArray, setSkillsArray] = useState([]);
+	const [company, setCompany] = useState('');
+	const [vacancyLink, setVacancyLink] = useState('');
+	const [missingKnowledge, setMissingKnowledge] = useState([]);
+	const [error, setError] = useState(null);
 
 	const navigate = useNavigate();
 	const { userId } = useParams();
 
 	function handleCompanyNameChange(e) {
-		setCompanyName(e.target.value);
+		setCompany(e.target.value);
 	}
 
-	function handleLinkChange(e) {
-		setLink(e.target.value);
+	function handleVacancyLinkChange(e) {
+		setVacancyLink(e.target.value);
 	}
 
-	function handleSkillsArrayChange(e, value) {
-		setSkillsArray([...value]);
+	function handleMissingKnowledgeChange(e, value) {
+		setMissingKnowledge([...value]);
+	}
+
+	function returnToAccount() {
+		navigate(`/user/${userId}/account`);
 	}
 
 	function addVacancy() {
-		alert(`Вакансия ${companyName} успешно добавлена`);
-		return {
-			company: companyName,
-			companyLink: link,
-			missingSkills: skillsArray,
-		};
+		if (!!company && !!vacancyLink) {
+			console.log({
+				company,
+				vacancyLink,
+				missingKnowledge,
+				status: 'отклик',
+				lastUpdate: dateFormat(new Date()),
+			});
+			returnToAccount();
+		}
+		setError('Заполните все поля');
 	}
 
 	return (
@@ -41,32 +59,42 @@ function FormPage() {
 			<div className={styles.main}>
 				<Typography variant="h5">Добавить вакансию</Typography>
 
-				<TextField
-					value={companyName}
-					size="small"
-					onChange={handleCompanyNameChange}
-					sx={{ minWidth: '80%', maxWidth: '80%' }}
-					label="Компания"
-					required
-				/>
-
-				<TextField
-					value={link}
-					size="small"
-					onChange={handleLinkChange}
-					sx={{ minWidth: '80%', maxWidth: '80%' }}
-					label="Ссылка на вакансию"
-					required
-				/>
+				<FormControl>
+					<TextField
+						error={error}
+						value={company}
+						size="small"
+						onChange={handleCompanyNameChange}
+						sx={{ minWidth: '80%', maxWidth: '80%' }}
+						label="Компания"
+						required
+					/>
+					<FormHelperText sx={!!error ? { color: '#d32f2f' } : {}}>
+						{!!error ? error : ''}
+					</FormHelperText>
+				</FormControl>
+				<FormControl>
+					<TextField
+						error={error}
+						value={vacancyLink}
+						size="small"
+						onChange={handleVacancyLinkChange}
+						sx={{ minWidth: '80%', maxWidth: '80%' }}
+						label="Ссылка на вакансию"
+						required
+					/>
+					<FormHelperText sx={!!error ? { color: '#d32f2f' } : {}}>
+						{!!error ? error : ''}
+					</FormHelperText>
+				</FormControl>
 
 				<Autocomplete
 					size="small"
 					sx={{ minWidth: '80%', maxWidth: '80%' }}
 					multiple
 					id="tags-filled"
-					onChange={handleSkillsArrayChange}
+					onChange={handleMissingKnowledgeChange}
 					options={skillsArrayMock.map((option) => option)}
-					defaultValue={[skillsArrayMock[0]]}
 					freeSolo
 					limitTags={2}
 					renderTags={(value, getTagProps) =>
@@ -89,7 +117,7 @@ function FormPage() {
 
 				<div className={styles.buttons}>
 					<button onClick={addVacancy}>Добавить</button>
-					<button onClick={() => navigate(`/user/${userId}/account`)} className={styles.cancel}>
+					<button onClick={returnToAccount} className={styles.cancel}>
 						Отмена
 					</button>
 				</div>

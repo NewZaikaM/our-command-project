@@ -12,10 +12,11 @@ import {
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { dateFormat } from '../../utils/others';
 
-function AccordionItem({ company }) {
-	const { companyName, vacancyLink, missingKnowledge, status, lastUpdate } =
-		company;
+function AccordionItem({ vacancy }) {
+	const { company, vacancyLink, missingKnowledge, status, lastUpdate } =
+	vacancy;
 	const favoritesLabel = { inputProps: { 'aria-label': 'favorites label' } };
 
 	return (
@@ -24,7 +25,7 @@ function AccordionItem({ company }) {
 				sx={{ borderBottom: '1px solid rgba(230, 230, 230, 1)' }}
 				expandIcon={<ExpandMoreIcon />}
 			>
-				<Typography sx={{ fontFamily: 'inherit' }}>{companyName}</Typography>
+				<Typography sx={{ fontFamily: 'inherit' }}>{company}</Typography>
 			</AccordionSummary>
 
 			<AccordionDetails>
@@ -33,7 +34,7 @@ function AccordionItem({ company }) {
 					alignItems="center"
 					justifyContent="space-between"
 				>
-					<Typography sx={{ fontFamily: 'inherit' }}>
+					<Typography sx={{ fontFamily: 'inherit', textTransform: "capitalize" }}>
 						<Typography
 							fontWeight="500"
 							variant="span"
@@ -85,7 +86,7 @@ function AccordionItem({ company }) {
 						>
 							{'Последнее обновление: '}
 						</Typography>
-						{lastUpdate}
+						{dateFormat(new Date(lastUpdate))}
 					</Typography>
 				</Stack>
 			</AccordionDetails>

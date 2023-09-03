@@ -1,24 +1,26 @@
-.main{
-    width: 40%;
-    height: 80%;
-    background-color: #f7f7f7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    border-radius: 5px;
+.main {
+	margin: 0 auto;
+	width: 60%;
+	height: 90%;
+	background-color: #f7f7f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 15px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+		rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+	border-radius: 5px;
 }
 .main h5 {
-    margin-bottom: 24px;
+	margin-bottom: 24px;
 }
 .buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start;
-    align-items: flex-start;
+	display: flex;
+	gap: 10px;
+	justify-content: flex-start;
+	align-items: flex-start;
 }
 .cancel {
-    color: rgba(0, 0, 0, 0.75);
+	color: rgba(0, 0, 0, 0.75);
 }

@@ -10,8 +10,10 @@ import FieldPassword from '../../components/fields/fieldPassword';
 import { isValidName, isValidPassword } from '../../utils/validates';
 
 import styles from './Account.module.css';
+import { useSelector } from 'react-redux';
 
 function AccountPage() {
+	const { nickname: name } = useSelector((state) => state.account);
 	const [nickname, setNickname] = useState({
 		nickname: '',
 		error: null,
@@ -83,7 +85,7 @@ function AccountPage() {
 						onChange={onChangeNickname}
 						value={nickname.nickname}
 						label={'Никнейм'}
-						placeholder={'Неизвестынй'}
+						placeholder={name}
 						error={nickname.error}
 						helperStyle={nickname.error ? { color: '#d32f2f' } : {}}
 						helperText={nickname.error ? nickname.error : 'Введите новое имя'}
