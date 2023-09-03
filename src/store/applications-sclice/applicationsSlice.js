@@ -28,28 +28,37 @@ const applicationsSlice = createSlice({
 			})
 			.addCase(fetchApplications.fulfilled, (state, action) => {
 				state.status = 'succeeded';
-        const applications = [];
-        const invitations = [];
-        const failures = [];
-        for(let [id, application] of Object.entries(action.payload.applications)) {
-          applications.push({...application, id})
-        }
-        for(let [id, application] of Object.entries(action.payload.invitations)) {
-          invitations.push({...application, id})
-        }
-        for(let [id, application] of Object.entries(action.payload.failures)) {
-          failures.push({...application, id})
-        }
-        state.applications = applications;
-        state.invitations = invitations;
-        state.failures = failures;
+				const applications = [];
+				const invitations = [];
+				const failures = [];
+				sortAllApplications(applications, invitations, failures, action);
+				state.applications = applications;
+				state.invitations = invitations;
+				state.failures = failures;
 			})
 			.addCase(fetchApplications.rejected, (state, action) => {
 				state.status = 'failed';
 				state.error = action.error.message;
 			});
-      
 	},
 });
 
+function sortAllApplications(applications, invitations, failures, action) {
+	for (let [id, application] of Object.entries(action.payload.applications)) {
+		applications.push({ ...application, id });
+	}
+	for (let [id, application] of Object.entries(action.payload.invitations)) {
+		invitations.push({ ...application, id });
+	}
+	for (let [id, application] of Object.entries(action.payload.failures)) {
+		failures.push({ ...application, id });
+	}
+	applications.sort(
+		(a, b) => Date.parse(b.lastUpdate) - Date.parse(a.lastUpdate),
+	);
+	invitations.sort(
+		(a, b) => Date.parse(b.lastUpdate) - Date.parse(a.lastUpdate),
+	);
+	failures.sort((a, b) => Date.parse(b.lastUpdate) - Date.parse(a.lastUpdate));
+}
 export const applicationsReducer = applicationsSlice.reducer;

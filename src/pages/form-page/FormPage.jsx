@@ -9,9 +9,15 @@ import {
 	FormHelperText,
 } from '@mui/material';
 import { FormControl } from '@mui/base';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { fetchApplications } from '../../store/applications-sclice/applicationsSlice';
+
+import FieldText from '../../components/fields/FieldText';
+
+import { dateFormat } from '../../utils/others';
 
 import styles from './Form.module.css';
-import { dateFormat } from '../../utils/others';
 
 const skillsArrayMock = ['TypeScript', 'Next.js'];
 
@@ -21,6 +27,7 @@ function FormPage() {
 	const [missingKnowledge, setMissingKnowledge] = useState([]);
 	const [error, setError] = useState(null);
 
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { userId } = useParams();
 
@@ -40,15 +47,21 @@ function FormPage() {
 		navigate(`/user/${userId}/account`);
 	}
 
-	function addVacancy() {
+	async function addVacancy() {
 		if (!!company && !!vacancyLink) {
-			console.log({
-				company,
-				vacancyLink,
-				missingKnowledge,
-				status: 'отклик',
-				lastUpdate: dateFormat(new Date()),
-			});
+			await axios.post(
+				'https://our-command-project-default-rtdb.firebaseio.com/allApplications/applications.json',
+				{
+					company,
+					vacancyLink,
+					missingKnowledge,
+					status: 'отклик',
+					lastUpdate: new Date(),
+				},
+			);
+
+			dispatch(fetchApplications());
+
 			returnToAccount();
 		}
 		setError('Заполните все поля');
@@ -59,38 +72,26 @@ function FormPage() {
 			<div className={styles.main}>
 				<Typography variant="h5">Добавить вакансию</Typography>
 
-				<FormControl>
-					<TextField
-						error={error}
-						value={company}
-						size="small"
-						onChange={handleCompanyNameChange}
-						sx={{ minWidth: '80%', maxWidth: '80%' }}
-						label="Компания"
-						required
-					/>
-					<FormHelperText sx={!!error ? { color: '#d32f2f' } : {}}>
-						{!!error ? error : ''}
-					</FormHelperText>
-				</FormControl>
-				<FormControl>
-					<TextField
-						error={error}
-						value={vacancyLink}
-						size="small"
-						onChange={handleVacancyLinkChange}
-						sx={{ minWidth: '80%', maxWidth: '80%' }}
-						label="Ссылка на вакансию"
-						required
-					/>
-					<FormHelperText sx={!!error ? { color: '#d32f2f' } : {}}>
-						{!!error ? error : ''}
-					</FormHelperText>
-				</FormControl>
-
+				<FieldText
+					onChange={handleCompanyNameChange}
+					value={company}
+					label={'Компания'}
+					placeholder={''}
+					error={error}
+					helperStyle={!!error ? { color: '#d32f2f' } : {}}
+					helperText={!!error ? error : ''}
+				/>
+				<FieldText
+					onChange={handleVacancyLinkChange}
+					value={vacancyLink}
+					label={'Ссылка на вакансию'}
+					placeholder={''}
+					error={error}
+					helperStyle={!!error ? { color: '#d32f2f' } : {}}
+					helperText={!!error ? error : ''}
+				/>
 				<Autocomplete
-					size="small"
-					sx={{ minWidth: '80%', maxWidth: '80%' }}
+					sx={{ width: '100%' }}
 					multiple
 					id="tags-filled"
 					onChange={handleMissingKnowledgeChange}
