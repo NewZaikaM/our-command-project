@@ -1,78 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-
 import { Typography } from '@mui/material';
 
 import FieldText from './../../components/fields/FieldText';
 import FieldPassword from '../../components/fields/fieldPassword';
 
-import { isValidName, isValidPassword } from '../../utils/validates';
-
 import styles from './Account.module.css';
-import { useSelector } from 'react-redux';
+import useAccount from './useAccount';
 
 function AccountPage() {
-	const { nickname: name } = useSelector((state) => state.account);
-	const [nickname, setNickname] = useState({
-		nickname: '',
-		error: null,
-	});
-	const [passwords, setPasswords] = useState({
-		old: '',
-		new: '',
-		error: null,
-	});
-
-	const onChangeNickname = (e) =>
-		setNickname({
-			...nickname,
-			nickname: e.target.value,
-		});
-
-	const onChangePasswords = (e) => {
-		const namePassword = e.target.id;
-		setPasswords({ ...passwords, [namePassword]: e.target.value });
-	};
-
-	const onUpdateAccount = (e) => {
-		e.preventDefault();
-		const isValidNickname = isValidName(nickname.nickname);
-		const isValidPasswords =
-			isValidPassword(passwords.old) && isValidPassword(passwords.new);
-
-		if (isValidNickname && isValidPasswords) {
-			const updatedAccount = {
-				nickname: nickname.nickname,
-				password: passwords.new,
-			};
-			console.log(updatedAccount);
-			return;
-		}
-		if (isValidNickname) {
-			const updatedAccount = {
-				nickname: nickname.nickname,
-			};
-			console.log(updatedAccount);
-			return;
-		}
-		if (isValidPasswords) {
-			const updatedAccount = {
-				password: passwords.new,
-			};
-			console.log(updatedAccount);
-			return;
-		}
-
-		setNickname({
-			...nickname,
-			error: 'Никнейм должен быть от 2 до 8 символов',
-		});
-		setPasswords({
-			...passwords,
-			error: 'Неверный прошлый пароль или меньше 6 символов',
-		});
-	};
+	const [name, nickname, passwords, onChangeNickname, onChangePasswords, onUpdateAccount] = useAccount();
 
 	return (
 		<Box>

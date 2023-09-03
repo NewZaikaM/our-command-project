@@ -18,6 +18,7 @@ function AccordionItem({ vacancy }) {
 	const { company, vacancyLink, missingKnowledge, status, lastUpdate } =
 	vacancy;
 	const favoritesLabel = { inputProps: { 'aria-label': 'favorites label' } };
+	
 
 	return (
 		<Accordion sx={{ marginBottom: '5px' }}>
@@ -59,7 +60,7 @@ function AccordionItem({ vacancy }) {
 					>
 						{'Недостающие знания: '}
 					</Typography>
-					{missingKnowledge}
+					{missingKnowledge.join(", ")}
 				</Typography>
 
 				<Stack
